@@ -1,0 +1,13 @@
+/* BASE 규칙 */
+body, form {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	color: #039;
+}
+
+a:hover {
+	color: #57f;
+}
