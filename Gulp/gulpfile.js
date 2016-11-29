@@ -1,11 +1,12 @@
 "use strict";
 var gulp = require('gulp'),
+	htmllint = require('gulp-htmllint'),
 	csslint = require('gulp-csslint'),
 	cssreporter = require('gulp-csslint-report'),
 	concatcss = require('gulp-concat-css'),
 	uglifycss = require('gulp-uglifycss'),
 	jshint = require('gulp-jshint'),
-	//reporter = require('reporter'),
+	reporter = require('reporter'),
 	uglify = require('gulp-uglify'),
 	concat = require('gulp-concat'),
 	rename = require('gulp-rename'),
@@ -27,11 +28,30 @@ gulp.task('clean', function(){
 	del(config.devSrc + config.path.clean.src);
 });
 
+//html 검사 > 인클루드
+gulp.task('html', function(){
+	gulp.src(config.input + config.path.html.src)
+		.pipe(gulpif(config.lint, htmllint(config.htmlLintRules)))
+		//.pipe(gulpif(config.lint, htmllint.reporter()))
+		.pipe()
+		.pipe(gulp.dest(config.output + config.path.html.dest));
+});
+
+//인클루드
+gulp.task('fileinclude', function(){
+    gulp
+        .src(config.devSrc + config.path.include.src)
+        .pipe(fileinclude(config.includeOption))
+        .pipe(gulp.dest(config.devSrc + config.path.include.dest));
+});
+
+
 //css 검사 > 병합 > 압축
 gulp.task('styles', function(){
 	gulp
 		.src(config.input + config.path.css.src)
 		.pipe(gulpif(config.lint, csslint(config.cssLintRules)))
+		//.pipee(gulpif(config.lint, csslint.reporter('csslint-stylish')))
 		.pipe(gulpif(config.lint, cssreporter(config.cssReporterOption)))
 		.pipe(gulpif(config.concat, concatcss(config.path.css.filename)))
 		.pipe(gulpif(config.rename, gulp.dest(config.output + config.path.css.dest)))
@@ -60,13 +80,6 @@ gulp.task('watch', ['clean'], function(){
 	gulp.watch(config.path.include.src, ['fileinclude']);
 });
 
-//인클루드
-gulp.task('fileinclude', function(){
-	gulp
-		.src(config.devSrc + config.path.include.src)
-		.pipe(fileinclude(config.includeOption))
-		.pipe(gulp.dest(config.devSrc + config.path.include.dest));
-});
 
 //웹서버
 gulp.task('server', ['watch'], function () {

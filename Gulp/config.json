@@ -8,6 +8,14 @@
 	"output" : "./app/dist",
 
 	"path" : {
+		"html" : {
+			"src" : ["/html/**/*.html", "/html/*.html"],
+			"dest" : "/html"
+		},
+		"include" : {
+			"src" : ["/src/html/**/*.html", "/include/*.html"],
+			"dest" : "/dist/html"
+		},
 		"css" : {
 			"src" : ["/css/style.css"],
 			"srcWatch" : "/css/**/*.css",
@@ -21,11 +29,11 @@
 		},
 		"clean" : {
 			"src" : "/dist/*"
-		},
-		"include" : {
-			"src" : ["/src/html/**/*.html", "/include/*.html"],
-			"dest" : "/dist/html"
 		}
+	},
+
+	"htmlLintRules" : {
+
 	},
 
 	"cssLintRules" : {
