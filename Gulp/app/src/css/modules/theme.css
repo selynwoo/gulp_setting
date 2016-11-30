@@ -1,8 +1,0 @@
-/* theme 규칙 */
-.mod {
-    border: 1px solid;
-}
-
-.darktheme .mod {
-    border-color: #d9d9ff;
-}
