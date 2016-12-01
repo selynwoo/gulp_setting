@@ -7,6 +7,7 @@
 	"input" : "./app/src",
 	"output" : "./app/dist",
 	"includePath" : "!./app/src",
+	"bower_path" : "./bower_components",
 
 	"livereload" : true,
 	"port" : 8000,
@@ -33,6 +34,10 @@
 		},
 		"clean" : {
 			"src" : "/dist/*"
+		},
+		"bower" : {
+			"src" : "/jquery/dist/**",
+			"dest" : "/js/libs"
 		}
 	},
 

@@ -17,6 +17,8 @@ var gulp = require('gulp'),
     fileinclude = require('gulp-file-include'),
     webserver = require('gulp-webserver'),
     open = require('gulp-open'),
+    bower = require('gulp-bower'),
+    preen = require('preen'),
     config = require('./config.json');
 
 
@@ -69,7 +71,7 @@ gulp.task('clean', function(){
 });
 
 //기본 & 관찰
-gulp.task('default', ['clean', 'html', 'styles', 'scripts', 'watch']);
+gulp.task('default', ['clean', 'html', 'styles', 'scripts', 'preen', 'bower:copy', 'watch']);
 
 //웹서버 > 브라우저 오픈
 gulp.task('server', ['watch'], function () {
@@ -81,6 +83,18 @@ gulp.task('server', ['watch'], function () {
         .src(config.output)
         .pipe(webserver({livereload : config.livereload}))
         .pipe(open(options));
+});
+
+//bower peen
+gulp.task('preen', function (cb) {
+    preen.preen({}, cb)
+});
+
+//bower copy
+gulp.task('bower:copy', function () {
+    gulp
+        .src(config.bower_path + config.path.bower.src)
+        .pipe(gulp.dest(config.output + config.path.bower.dest));
 });
 
 

@@ -1,0 +1,26 @@
+{
+  "name": "gulp_setting",
+  "description": "gulp_setting",
+  "main": "index.js",
+  "authors": [
+    "selyn"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1"
+  },
+  "preen" : {
+    "jquery": [
+        "dist/*.js"
+    ]
+  }
+}

@@ -9,6 +9,7 @@
     "csslint-stylish": "0.0.5",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
+    "gulp-bower": "0.0.13",
     "gulp-concat": "^2.6.0",
     "gulp-concat-css": "^2.3.0",
     "gulp-connect": "^5.0.0",
@@ -27,6 +28,7 @@
     "gulp-webserver": "^0.9.1",
     "htmlhint-stylish": "^1.0.3",
     "jshint-stylish": "^2.2.1",
+    "preen": "^1.2.0",
     "reporter": "^0.1.0"
   }
 }
